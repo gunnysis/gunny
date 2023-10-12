@@ -14,10 +14,14 @@ use Inertia\Inertia;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
 Route::get('/', function () {
-    return Inertia::render('Main');
+    return Inertia::render('Index');
+});
+
+Route::get('/memo/show', function () {
+    return Inertia::render('Memo');
+});
+
+Route::get('/video/show', function () {
+    return Inertia::render('Video');
 });
