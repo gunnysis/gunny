@@ -8,6 +8,5 @@
 </head>
 <body>
 @inertia
-test
 </body>
 </html>
