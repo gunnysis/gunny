@@ -71,23 +71,14 @@ export default {
 
 @media (min-width: 768px) and (orientation: landscape) {
 
-    .main__show__video {
-        top: 6vh !important;
-    }
 
 }
 
 
 
 @media (min-width: 768px) {
-    .main__show__video {
-        position: relative;
-        top: 7rem;
-        flex-direction: row;
-        column-gap: 1.5rem;
-        margin: 0 50px;
-        flex-wrap: wrap;
-        gap: 1.5rem;
+    main__show__video {
+        top: 20vh !important;
     }
 
 

@@ -33,36 +33,44 @@
 </template>
 
 <script>
-import axios from 'axios';
 
 export default {
-    name: "Register",
     methods: {
-        submitForm() {
+        async submitForm() {
             const formData = {
                 kind: this.$refs.type.value,
                 jap_pron: this.$refs.pronunciation.value,
                 jap_lang: this.$refs.japanese.value,
                 jap_mean: this.$refs.meaning.value,
             };
-            // 서버로 데이터를 전송합니다.
-            axios.post('/memo/registerUpdate', formData)
-                .then(response => {
-                    // 성공적으로 전송되었을 때 수행할 작업
-                    console.log('데이터가 성공적으로 서버로 전송되었습니다.');
-                })
-                .catch(error => {
-                    // 전송 중 오류가 발생한 경우 처리
-                    console.error('데이터 전송 중 오류가 발생했습니다:', error);
-                });
+
+            // 서버로 데이터를 전송하고 응답을 기다립니다.
+            const response = await fetch("/memo/registerUpdate", {
+                method: "POST",
+                body: JSON.stringify(formData),
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                },
+            });
+
+            if (response.ok) {
+                // 성공적으로 처리된 경우 다음 페이지로 리다이렉트
+                window.location.href = "/memo/show";
+            } else {
+                // 오류 처리
+                console.error("데이터 저장 중 오류가 발생했습니다.");
+            }
         },
-    }
-}
+    },
+};
+
 </script>
 
 <style scoped>
 .register {
     align-items: center;
+    height: 90vh;
 }
 
 .register button {

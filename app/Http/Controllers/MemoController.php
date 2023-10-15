@@ -23,7 +23,8 @@ class MemoController extends Controller
     public function memoUpdate(Request $request)
     {
         $data = $request->only(['kind', 'jap_pron', 'jap_lang', 'jap_mean']);
-        Memo::create($data);
+        // Memo 모델과 연결된 데이터베이스 테이블에 직접 데이터를 삽입합니다.
+        Memo::insert($data);
 
         return redirect('/memo/show');
     }
