@@ -1,7 +1,7 @@
 <template>
-    <div class="main flex">
+    <main class="main flex">
         메인페이지
-    </div>
+    </main>
 </template>
 
 <script>
@@ -11,11 +11,5 @@ export default {
 </script>
 
 <style scoped>
-    .main {
-        position: relative;
-        top: 10vh;
-        height: 90vh;
-        justify-content: center;
-        flex-direction: column;
-    }
+
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="header">
+    <header class="header">
         <div class="header-content flex">
             <div class="div__title flex">
                 <a href="/" class="header-content__logo">Gunny</a>
@@ -16,7 +16,7 @@
                 <img src="https://cdn.iconscout.com/icon/free/png-256/free-hamburger-menu-462145.png?f=webp" alt="" width="30" height="30">
             </div>
         </div>
-    </div>
+    </header>
 </template>
 
 <script>

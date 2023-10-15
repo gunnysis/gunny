@@ -1,7 +1,7 @@
 <template>
-    <div class="div__footer flex">
+    <footer class="div__footer flex">
         <section class="footer__company__info">
-            <div class="div__company__infos flex">
+            <div class="div__company__infos">
                 <section class="company__intro">
                     <div><b>대표</b> 김용현, 황도연 | <b>사업자번호</b> 375-87-00088</div>
                     <div><b>직업정보제공사업 신고번호</b> J1200020200016</div>
@@ -15,7 +15,7 @@
             </div>
 
         </section>
-    </div>
+    </footer>
 
 </template>
 
@@ -27,13 +27,13 @@ export default {
 
 <style scoped>
     .div__footer {
-        position : absolute;
-        bottom: 0;
         color: #0000008c;
         width: 100vw;
         background-color: #d3d3d3;
         padding: 0.5rem;
         display: block;
+        position: relative;
+        transform: translateY(10vh);
     }
 
 

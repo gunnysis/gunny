@@ -16,6 +16,15 @@ body {
 
 a {
     text-decoration-line: none;
+    color: black;
 }
 
+li {
+    list-style: none;
+}
 
+.main {
+    position: relative;
+    top: 10vh;
+    flex-direction: column;
+}
