@@ -14,7 +14,7 @@ import RegisterMemo from "./content/RegisterMemo.vue";
 export default {
     name: "Memo",
     components: {Footer, Header, Show, RegisterMemo},
-    props: {
+        props: {
         memos: {
             type: Object,
             required: true,

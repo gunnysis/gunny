@@ -10,9 +10,7 @@
                     </ul>
                 </div>
             </div>
-
-
-            <div class="menu__img flex" id="menu-icon">
+            <div class="menu__img flex" id="menu-icon" @click="changeDisplay">
                 <img src="https://cdn.iconscout.com/icon/free/png-256/free-hamburger-menu-462145.png?f=webp" alt="" width="30" height="30">
             </div>
         </div>
@@ -22,19 +20,18 @@
 <script>
 export default {
     name: "Header",
-    mounted() {
-        // 컴포넌트가 렌더링된 후에 실행될 JavaScript 코드를 여기에 추가합니다.
-        const menuIcon = document.getElementById('menu-icon');
-        const menuContent = document.getElementById('menu-content');
+    methods: {
+        changeDisplay() {
+            const menuIcon = document.getElementById('menu-icon');
+            const menuContent = document.getElementById('menu-content');
 
-        menuIcon.addEventListener('click', () => {
             if (menuContent.style.display === 'flex') {
                 menuContent.style.display = 'none';
             } else {
                 menuContent.style.display = 'flex';
             }
-        });
-    },
+        }
+    }
 }
 </script>
 
