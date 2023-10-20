@@ -1,25 +1,21 @@
 <template>
     <main class="main register flex">
         <form @submit.prevent="submitForm" method="POST">
-            <!-- "종류" 필드 -->
             <p>
             <label for="type">종류:</label>
             <input type="text" name="kind" id="type" ref="type">
             </p>
 
-            <!-- "발음" 필드 -->
             <p>
             <label for="pronunciation">발음:</label>
             <input type="text" name="jap_pron" id="pronunciation" ref="pronunciation">
             </p>
 
             <p>
-            <!-- "일본어" 필드 -->
             <label for="japanese">문장:</label>
             <input type="text" name="jap_lang" id="japanese" ref="japanese">
             </p>
 
-            <!-- "의미" 필드 -->
             <p>
             <label for="meaning">의미:</label>
             <input type="text" name="jap_mean" id="meaning" ref="meaning">
@@ -58,7 +54,6 @@ export default {
                 // 성공적으로 처리된 경우 다음 페이지로 리다이렉트
                 window.location.href = "/memo/show";
             } else {
-                // 오류 처리
                 console.error("데이터 저장 중 오류가 발생했습니다.");
             }
         },

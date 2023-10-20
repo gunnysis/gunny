@@ -10,6 +10,6 @@ class Memo extends Model
     use HasFactory;
 
     public $timestamps = false;
-    protected $table = 'memo1';
+    protected $table = 'memos';
     protected $fillable = ['id', 'kind', 'jap_pron', 'jap_lang', 'jap_mean'];
 }

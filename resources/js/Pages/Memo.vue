@@ -1,20 +1,22 @@
 <template>
-    <Header />
-    <Show v-if="memos" :memos="memos" />
-    <RegisterMemo v-else />
-    <Footer />
+    <div class="container">
+        <Header />
+        <ShowMemo v-if="memos" :memos="memos" />
+        <RegisterMemo v-else />
+        <Footer />
+    </div>
 </template>
 
 <script>
 import Header from "./layout/Header.vue";
-import Show from "./content/ShowMemo.vue";
 import Footer from "./layout/Footer.vue";
+import ShowMemo from "./content/ShowMemo.vue";
 import RegisterMemo from "./content/RegisterMemo.vue";
 
 export default {
     name: "Memo",
-    components: {Footer, Header, Show, RegisterMemo},
-        props: {
+    components: {Footer, Header, ShowMemo, RegisterMemo},
+    props: {
         memos: {
             type: Object,
             required: true,

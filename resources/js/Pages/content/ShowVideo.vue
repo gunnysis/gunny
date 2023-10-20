@@ -24,12 +24,13 @@ export default {
         videos: {
             type: Object,
             required: true,
-        }
+        },
     },
     data() {
         return {
             keyword: null,
-            videos: this.videos
+            showFooter: false, // footer를 초기에 보이지 않게 설정
+            videos: this.videos,
         };
     },
     watch: {
@@ -42,7 +43,7 @@ export default {
             axios.get('/video/search', { params: { keyword: this.keyword } })
                 .then(res => this.videos = res.data)
                 .catch(error => {});
-        }
+        },
     }
 }
 </script>
@@ -68,18 +69,8 @@ export default {
     font-size: 0.7rem;
 }
 
-
-@media (min-width: 768px) and (orientation: landscape) {
-
-
-}
-
-
-
 @media (min-width: 768px) {
-    main__show__video {
-        top: 20vh !important;
-    }
+
 
 
     .media {
@@ -89,5 +80,6 @@ export default {
 
 
 }
+
 
 </style>

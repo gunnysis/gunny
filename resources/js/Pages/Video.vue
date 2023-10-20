@@ -1,8 +1,10 @@
 <template>
-    <Header />
-    <ShowVideo  v-if="videos" :videos="videos"/>
-    <RegisterVideo v-else />
-    <Footer />
+    <div class="container">
+        <Header />
+        <ShowVideo v-if="videos" :videos="videos"/>
+        <RegisterVideo v-else />
+        <Footer />
+    </div>
 </template>
 
 <script>
@@ -12,7 +14,7 @@ import ShowVideo from "./content/ShowVideo.vue";
 import RegisterVideo from "./content/RegisterVideo.vue";
 export default {
     name: "Video",
-    components: {RegisterVideo, ShowVideo, Footer, Header},
+    components: {Footer, Header, RegisterVideo, ShowVideo},
     props: {
         videos: {
             type: Object,

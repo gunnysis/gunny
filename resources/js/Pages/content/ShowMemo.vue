@@ -29,7 +29,7 @@ export default {
     data() {
         return {
             keyword: null,
-            memos: this.memos
+            memos: this.memos,
         };
     },
     watch: {
@@ -42,8 +42,12 @@ export default {
             axios.get('/memo/search', { params: { keyword: this.keyword } })
                 .then(res => this.memos = res.data)
                 .catch(error => {});
-        }
-    }
+        },
+
+    },
+
+
+
 }
 </script>
 
@@ -59,7 +63,7 @@ export default {
 
 .main__show__memo {
     align-items: center;
-    padding-top: 1rem;
+    padding: 1rem 0;
 }
 
  .ul__show {
@@ -69,4 +73,5 @@ export default {
  .li__show {
      padding: 0.5rem 0;
  }
+
 </style>

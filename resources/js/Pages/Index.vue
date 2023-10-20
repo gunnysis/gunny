@@ -1,7 +1,9 @@
 <template>
-    <Header />
-    <Main />
-    <Footer />
+    <div class="container">
+        <Header />
+        <Main />
+        <Footer />
+    </div>
 </template>
 
 <script>

@@ -22,14 +22,9 @@ export default {
     name: "Header",
     methods: {
         changeDisplay() {
-            const menuIcon = document.getElementById('menu-icon');
             const menuContent = document.getElementById('menu-content');
-
-            if (menuContent.style.display === 'flex') {
-                menuContent.style.display = 'none';
-            } else {
-                menuContent.style.display = 'flex';
-            }
+            const currentDisplay = getComputedStyle(menuContent).display;
+            menuContent.style.display = currentDisplay === 'flex' ? 'none' : 'flex';
         }
     }
 }

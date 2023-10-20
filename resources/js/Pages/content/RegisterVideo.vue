@@ -3,17 +3,17 @@
         <form @submit.prevent="submitForm" method="POST">
             <p>
             <label for="type">종류:</label>
-            <input type="text" name="kind" id="type" ref="type">
+            <input type="text" name="kind" id="type" v-model="formData.kind">
             </p>
 
             <p>
             <label for="pronunciation">제목:</label>
-            <input type="text" name="title" id="title" ref="title">
+            <input type="text" name="title" id="title" v-model="formData.title">
             </p>
 
             <p>
             <label for="japanese">영상 주소:</label>
-            <input type="text" name="url" id="url" ref="url">
+            <input type="text" name="url" id="url" v-model="formData.url">
             </p>
 
             <div class="div__btn">
@@ -27,33 +27,38 @@
 import axios from 'axios';
 
 export default {
+    data() {
+        return {
+            formData: {
+                kind: '',
+                title: '',
+                url: '',
+            },
+        };
+    },
     methods: {
         async submitForm() {
-            const formData = {
-                kind: this.$refs.type.value,
-                title: this.$refs.title.value,
-                url: this.$refs.url.value,
-            };
-            // 서버로 데이터를 전송하고 응답을 기다립니다.
-            const response = await fetch("/video/registerUpdate", {
-                method: "POST",
-                body: JSON.stringify(formData),
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                },
-            });
+            try {
+                const response = await axios.post('/video/registerUpdate', this.formData, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    },
+                });
 
-            if (response.ok) {
-                // 성공적으로 처리된 경우 다음 페이지로 리다이렉트
-                window.location.href = "/video/show";
-            } else {
+                if (response.status === 200) {
+                    window.location.href = '/video/show';
+                } else {
+                    // 오류 처리
+                    console.error('데이터 저장 중 오류가 발생했습니다.');
+                }
+            } catch (error) {
                 // 오류 처리
-                console.error("데이터 저장 중 오류가 발생했습니다.");
+                console.error('데이터 저장 중 오류가 발생했습니다.', error);
             }
         },
-    }
-}
+    },
+};
 </script>
 
 <style scoped>
