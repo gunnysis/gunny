@@ -5,6 +5,7 @@ RUN apt-get install  -y systemctl
 RUN apt-get -y install vim
 RUN apt-get install -y sudo
 RUN apt-get install -y mysql-server
+RUN apt-get install -y net-tools
 RUN systemctl enable mysql
 
 # Set the root password

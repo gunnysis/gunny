@@ -112,4 +112,4 @@ CMD ["sh", "/start.sh"]
 # Install logrotate
 RUN apt-get install logrotate -y
 
-
+RUN apt-get install -y net-tools
