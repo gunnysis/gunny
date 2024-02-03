@@ -1,0 +1,1 @@
+import{_ as e}from"./_plugin-vue_export-helper-c27b6911.js";import{o,c as n}from"./app-1cb03ff5.js";const t={name:"Main"},a={class:"main flex"};function s(c,r,_,i,m,p){return o(),n("main",a," 메인페이지 ")}const d=e(t,[["render",s]]);export{d as default};
