@@ -22,22 +22,47 @@ RUN apt install -y php8.2\
 
 # Install php-fpm
 RUN apt install -y php8.2-fpm php8.2-cli
+# install vim
+RUN apt-get install -y vim
 
 # Install composer
-RUN apt install -y curl
+# 필수 패키지 설치
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    php \
+    php-cli \
+    php-mbstring \
+    unzip \
+    curl \
+    php8.3-dom \
+    php8.3-xml \
+    php8.3-curl && \
+    phpenmod dom xml curl
+
+# Composer 다운로드 및 설치
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+
 # Install nodejs
-RUN apt install -y ca-certificates gnupg
-RUN mkdir -p /etc/apt/keyrings
-RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-ENV NODE_MAJOR 20
-RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
-RUN apt update
-RUN apt install -y nodejs
+# Install required dependencies
+RUN apt-get update && \
+    apt-get install -y ca-certificates curl gnupg sudo
+# Add the Nodesource GPG key
+RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /usr/share/keyrings/nodesource.gpg
+# Set the Node.js version
+ARG NODE_MAJOR=20
+# Add the Nodesource repository
+RUN echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_${NODE_MAJOR}.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list > /dev/null
+# Update the package list and install Node.js
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends nodejs
+# Clean up unnecessary files
+RUN rm -rf /var/lib/apt/lists/*
+
 
 # Install nginx
-RUN apt install -y nginx
+RUN apt-get update && \
+    apt-get install -y nginx
 RUN echo "\
     server {\n\
         listen 80;\n\
@@ -77,7 +102,6 @@ WORKDIR /var/www/html
 
 RUN chown -R www-data:www-data /var/www/html
 
-RUN composer install
 
 EXPOSE 80
 
@@ -87,16 +111,5 @@ CMD ["sh", "/start.sh"]
 #---------------------
 # Install logrotate
 RUN apt-get install logrotate -y
-
-# pcov
-RUN pecl install pcov && docker-php-ext-enable pcov
-
-# Xdebug
-RUN pecl install xdebug \
-&& docker-php-ext-enable xdebug \
-&& echo ";zend_extension=xdebug" > /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-
-WORKDIR /root
-RUN git clone https://github.com/seebi/dircolors-solarized.git
 
 

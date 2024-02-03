@@ -10,7 +10,7 @@ services:
             - 80:80
             - 443:443
         volumes:
-            - ../rootWeb:/usr/share/nginx/html
+            - ../rootWeb:/var/www/html
             - ./web/logs:/var/log/nginx
     db:
         container_name: db
