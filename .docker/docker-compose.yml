@@ -1,0 +1,30 @@
+version: '1'
+name: 'gunny_dev'
+services:
+    web:
+        container_name: web
+        build: web
+        environment:
+            - TZ=Asia/Seoul
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - ../rootWeb:/usr/share/nginx/html
+            - ./web/logs:/var/log/nginx
+    db:
+        container_name: db
+        build: db
+        environment:
+            - MYSQL_ROOT_PASSWORD='123123'
+        ports:
+            - 3306:3306
+        volumes:
+            - db_data:/var/lib/mysql
+
+volumes:
+    db_data:
+
+
+
+
